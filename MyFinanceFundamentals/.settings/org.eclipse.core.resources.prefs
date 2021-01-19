@@ -1,0 +1,14 @@
+eclipse.preferences.version=1
+encoding//src/exportCSV.py=UTF-8
+encoding//src/getDatabaseConnection.py=UTF-8
+encoding//src/insertManualIndex.py=UTF-8
+encoding//src/old/getFinanzeNet.py=UTF-8
+encoding//src/old/getIndexInformation_org.py=UTF-8
+encoding//src/old/getYahooInfo.py=UTF-8
+encoding//src/runFinFun.py=UTF-8
+encoding//src/updateBasicData.py=UTF-8
+encoding//src/updateDilutedEPS.py=UTF-8
+encoding//src/updateDividend.py=UTF-8
+encoding//src/updateIndexInformation.py=UTF-8
+encoding//src/updateKeyFigures.py=UTF-8
+encoding//src/updateTimeseries.py=UTF-8
