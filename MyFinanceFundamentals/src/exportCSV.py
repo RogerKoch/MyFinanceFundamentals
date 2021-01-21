@@ -4,6 +4,7 @@
 from getDatabaseConnection import DatabaseManager
 import datetime
 import csv
+from sendEmail import sendEmail
 
 
 def exportCsv(currrentYear):
@@ -103,6 +104,8 @@ def exportCsv(currrentYear):
     myCursor.close()
     divCursor.close()
     epsCursor.close()
+    
+    sendEmail()
 
 
 def calcDividends(divTable, yearRange):
