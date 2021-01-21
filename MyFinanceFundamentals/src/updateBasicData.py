@@ -5,7 +5,8 @@
 from getDatabaseConnection import DatabaseManager
 import yfinance as yf
 import time
-from future.backports.urllib.error import HTTPError
+from urllib.error import HTTPError
+
 
 def updateBasicData():
 

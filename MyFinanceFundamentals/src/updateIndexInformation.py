@@ -45,8 +45,8 @@ def updateIndexInformation():
         
         selectCursor = mydb.cursor(buffered=True)
         
-        #selectQuery = "SELECT idIndexInformation, IndexURL, IndexExchange FROM stockInfo.IndexInformation WHERE isMixed=0;"
-        selectQuery = "SELECT idIndexInformation, IndexURL, IndexExchange FROM stockInfo.IndexInformation WHERE isMixed=0 AND idIndexInformation = 4"
+        selectQuery = "SELECT idIndexInformation, IndexURL, IndexExchange FROM stockInfo.IndexInformation WHERE isMixed=0;"
+        #selectQuery = "SELECT idIndexInformation, IndexURL, IndexExchange FROM stockInfo.IndexInformation WHERE isMixed=0 AND idIndexInformation = 4"
         selectCursor.execute(selectQuery)
         
         for (idIndexInformation, url, indexExchange) in selectCursor:

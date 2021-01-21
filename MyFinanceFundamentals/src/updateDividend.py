@@ -22,8 +22,8 @@ def updateDividend():
         insertQuery = ("""Call stockInfo.spInsDivFigures (%s, %s, %s)""")
         insertCursor = mydb.cursor()
         
-        #myCursor.execute('SELECT isin, yahooTicker FROM stockInfo.BasicData')
-        myCursor.execute('SELECT isin, yahooTicker FROM stockInfo.BasicData LIMIT 10')
+        myCursor.execute('SELECT isin, yahooTicker FROM stockInfo.BasicData')
+        #myCursor.execute('SELECT isin, yahooTicker FROM stockInfo.BasicData LIMIT 10')
         allIsins = myCursor.fetchall()
         for sqlRow in allIsins:    
             try:

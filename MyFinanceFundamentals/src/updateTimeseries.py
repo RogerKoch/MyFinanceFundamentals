@@ -54,9 +54,8 @@ def updateTimeseries(endDate, startDate=None, onlyNew=False):
                                 HAVING max(tsdate) < '{0}'
                             """.format(endDateCalc)
         else:
-            #selectUnivers = """SELECT isin, yahooTicker FROM stockInfo.BasicData"""
-            selectUnivers = """SELECT isin, yahooTicker FROM stockInfo.BasicData
-                                LIMIT 10"""
+            selectUnivers = """SELECT isin, yahooTicker FROM stockInfo.BasicData"""
+            #selectUnivers = """SELECT isin, yahooTicker FROM stockInfo.BasicData LIMIT 10"""
             
         try:
             myCursor.execute(selectUnivers)
