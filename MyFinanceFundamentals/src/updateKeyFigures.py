@@ -24,7 +24,8 @@ def updateKeyFigures():
         insertQuery = ("""Call stockInfo.spInsKeyFigures (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s)""")
         insertCursor = mydb.cursor()
         
-        myCursor.execute('SELECT isin, yahooTicker FROM stockInfo.BasicData')
+        #myCursor.execute('SELECT isin, yahooTicker FROM stockInfo.BasicData')
+        myCursor.execute('SELECT isin, yahooTicker FROM stockInfo.BasicData LIMIT 10')
         allIsins = myCursor.fetchall()
         for sqlRow in allIsins:
             try:
@@ -57,10 +58,10 @@ def updateKeyFigures():
             errorCursor.execute(errorQuery.format(isin, 'updateKeyFigures', str(e).replace("'", "''")))
         else:
             errorCursor.execute(errorQuery.format('N/A', 'updateKeyFigures', str(e).replace("'", "''")))
-    
-    mydb.commit()    
-    errorCursor.close()        
-    
+        
+    errorCursor.execute(errorQuery.format('FINISH', 'updateKeyFigures', 'FINISH IMPORT'))    
+    errorCursor.close()
+    mydb.commit()
 
 if __name__ == '__main__':
     updateKeyFigures()

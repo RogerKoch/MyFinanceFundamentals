@@ -63,8 +63,10 @@ def updateBasicData():
         else:
             errorCursor.execute(errorQuery.format('N/A', 'updateBasicData', str(e).replace("'", "''")))
 
-    mydb.commit()
+    errorCursor.execute(errorQuery.format('FINISH', 'updateBasicData', 'FINISH IMPORT'))    
     errorCursor.close()
+    mydb.commit()
+    
 
 if __name__ == '__main__':
     updateBasicData()

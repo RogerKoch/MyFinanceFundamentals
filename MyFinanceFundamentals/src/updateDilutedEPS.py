@@ -28,7 +28,8 @@ def updateDilutedEPS():
         insertQuery = ("""Call stockInfo.spInsEPSFigures (%s, %s, %s)""")
         insertCursor = mydb.cursor()
         
-        myCursor.execute('SELECT isin, yahooTicker FROM stockInfo.BasicData')
+        #myCursor.execute('SELECT isin, yahooTicker FROM stockInfo.BasicData')
+        myCursor.execute('SELECT isin, yahooTicker FROM stockInfo.BasicData LIMIT 10')
         allIsins = myCursor.fetchall()
         for sqlRow in allIsins:    
             try:
@@ -65,8 +66,9 @@ def updateDilutedEPS():
     except Exception as e:
         errorCursor.execute(errorQuery.format('N/A', 'updateDilutedEPS', str(e).replace("'", "''")))
         
-    mydb.commit()    
-    errorCursor.close()        
+    errorCursor.execute(errorQuery.format('FINISH', 'updateDilutedEPS', 'FINISH IMPORT'))    
+    errorCursor.close()
+    mydb.commit()
     
 
 

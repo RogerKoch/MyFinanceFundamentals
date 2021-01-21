@@ -18,7 +18,7 @@ class DatabaseManager():
         else:
             if dbName == 'stockInfo':
                     mydb = mysql.connector.connect(
-                                    host='185.178.193.184',
+                                    host='161.97.157.97',
                                     user='stockInfo',
                                     password='stockInfo2020',
                                     database='stockInfo'

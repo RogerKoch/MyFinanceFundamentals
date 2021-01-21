@@ -22,7 +22,8 @@ def updateDividend():
         insertQuery = ("""Call stockInfo.spInsDivFigures (%s, %s, %s)""")
         insertCursor = mydb.cursor()
         
-        myCursor.execute('SELECT isin, yahooTicker FROM stockInfo.BasicData')
+        #myCursor.execute('SELECT isin, yahooTicker FROM stockInfo.BasicData')
+        myCursor.execute('SELECT isin, yahooTicker FROM stockInfo.BasicData LIMIT 10')
         allIsins = myCursor.fetchall()
         for sqlRow in allIsins:    
             try:
@@ -69,9 +70,9 @@ def updateDividend():
     except Exception as e:
         errorCursor.execute(errorQuery.format('N/A', 'updateDividend', str(e).replace("'", "''")))
     
-    mydb.commit()    
+    errorCursor.execute(errorQuery.format('FINISH', 'updateDividend', 'FINISH IMPORT'))    
     errorCursor.close()
-    
+    mydb.commit()
 
 
 

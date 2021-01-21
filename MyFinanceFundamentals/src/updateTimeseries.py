@@ -54,7 +54,9 @@ def updateTimeseries(endDate, startDate=None, onlyNew=False):
                                 HAVING max(tsdate) < '{0}'
                             """.format(endDateCalc)
         else:
-            selectUnivers = """SELECT isin, yahooTicker FROM stockInfo.BasicData"""
+            #selectUnivers = """SELECT isin, yahooTicker FROM stockInfo.BasicData"""
+            selectUnivers = """SELECT isin, yahooTicker FROM stockInfo.BasicData
+                                LIMIT 10"""
             
         try:
             myCursor.execute(selectUnivers)
@@ -86,8 +88,11 @@ def updateTimeseries(endDate, startDate=None, onlyNew=False):
     except Exception as e:
         errorCursor.execute(errorQuery.format('N/A', 'updateTimeseries', str(e).replace("'", "''")))
     
-    mydb.commit()    
-    errorCursor.close()        
+    
+    errorCursor.execute(errorQuery.format('FINISH', 'updateTimeseries', 'FINISH IMPORT'))    
+    errorCursor.close()
+    mydb.commit()
+        
     
 
 if __name__ == '__main__':

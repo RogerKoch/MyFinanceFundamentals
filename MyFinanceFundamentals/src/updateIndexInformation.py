@@ -45,7 +45,8 @@ def updateIndexInformation():
         
         selectCursor = mydb.cursor(buffered=True)
         
-        selectQuery = "SELECT idIndexInformation, IndexURL, IndexExchange FROM stockInfo.IndexInformation WHERE isMixed=0;"
+        #selectQuery = "SELECT idIndexInformation, IndexURL, IndexExchange FROM stockInfo.IndexInformation WHERE isMixed=0;"
+        selectQuery = "SELECT idIndexInformation, IndexURL, IndexExchange FROM stockInfo.IndexInformation WHERE isMixed=0 AND idIndexInformation = 4"
         selectCursor.execute(selectQuery)
         
         for (idIndexInformation, url, indexExchange) in selectCursor:
@@ -109,8 +110,11 @@ def updateIndexInformation():
     except Exception as e:
         errorCursor.execute(errorQuery.format('N/A', 'updateIndexInformation', str(e).replace("'", "''")))
     
-    mydb.commit()    
+    
+    errorCursor.execute(errorQuery.format('FINISH', 'updateIndexInformation', 'FINISH IMPORT'))    
     errorCursor.close()
+    mydb.commit()
+    
     
 
 if __name__ == '__main__':
