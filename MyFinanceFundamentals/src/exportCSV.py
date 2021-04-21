@@ -4,6 +4,7 @@
 from getDatabaseConnection import DatabaseManager
 import datetime
 import csv
+import os
 from sendEmail import sendEmail
 
 
@@ -12,7 +13,7 @@ def exportCsv(currrentYear):
     if currrentYear is None:
         today = datetime.datetime.now()
         currrentYear = today.year 
-    
+
     db = DatabaseManager()
     mydb = db.setDBConnection('stockInfo')
     myCursor = mydb.cursor()    
@@ -67,9 +68,10 @@ def exportCsv(currrentYear):
         divYearTitleRow.append('DivYear_{0}'.format(year))
         payoutYearTitleRow.append('PayoutYear_{0}'.format(year))
     
-    
+    curPath = os.path.dirname(os.path.realpath(__file__))
+    csvPath = os.path.join(curPath, 'export\\financials.csv')
     titleRow = keyTitleRow + divTitleRow + divYearTitleRow + payoutYearTitleRow
-    with open('export/financials.csv', mode='w', newline='') as fin_file:
+    with open(csvPath, mode='w', newline='') as fin_file:
         fin_writer = csv.writer(fin_file, delimiter=';', quotechar='"', quoting=csv.QUOTE_MINIMAL)
         fin_writer.writerow(titleRow)    
         myCursor.execute(selectKeyFigures)

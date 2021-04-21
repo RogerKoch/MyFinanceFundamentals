@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 
 
-import smtplib, ssl
+import smtplib, ssl, os
 
 from email import encoders
 from email.mime.base import MIMEBase
@@ -35,7 +35,8 @@ def sendEmail():
     # Add body to email
     message.attach(MIMEText(body, "plain"))
 
-    filename = "export/financials.csv"  # In same directory as script
+    curPath = os.path.dirname(os.path.realpath(__file__))
+    filename = os.path.join(curPath, 'export\\financials.csv')
 
     # Open PDF file in binary mode
     with open(filename, "rb") as attachment:
