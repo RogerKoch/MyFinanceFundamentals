@@ -8,8 +8,6 @@ import time
 import requests
 
 
-
-
 def updateDilutedEPS():
     
     db = DatabaseManager()
